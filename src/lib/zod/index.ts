@@ -40,3 +40,10 @@ export function createErrorSchema<T extends z.ZodTypeAny>(schema: T) {
     }),
   });
 }
+
+export const createResponseSchema = <T extends z.ZodTypeAny>(dataSchema: T) =>
+  z.object({
+    message: z.string(),
+    code: z.number(),
+    data: dataSchema.optional(),
+  })
